@@ -14,7 +14,7 @@ args = {"api_key":api_key, "series_id":0, "file_type":"json", "frequency":"sa", 
 
 
 #DB config
-db = '/Users/nestor/Projects/FED/DATA/unemployment.db'
+db = 'unemployment.db'
 conn = sq.connect(db) #connection is open
 conn.row_factory = sq.Row
 force = False;
@@ -42,7 +42,7 @@ def check_series():
 	if force == True:
 		delete_rows()
 	ids = get_ids() #get all ids from db
-	print ids
+	#print ids
 	c = conn.cursor()
 	for id in ids:
 		i = (id["series_id"],)
