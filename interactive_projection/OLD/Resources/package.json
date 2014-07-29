@@ -1,0 +1,25 @@
+{
+  "main": "index.html",
+  "name": "nw-demo",
+  "description": "demo app of node-webkit",
+  "version": "0.1.0",
+  "keywords": [ "demo", "node-webkit" ],
+  "window": {
+    "title": "node-webkit demo",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 1024,
+    "height": 768,
+    "position": "mouse",
+    "min_width": 400,
+    "min_height": 200,
+    "max_width": 800,
+    "max_height": 600,
+    "kiosk" : false
+  },
+  "webkit": {
+    "plugin": false
+  },
+  "chromium-args": "--remote-debugging-port=9222"
+}
