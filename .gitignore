@@ -1,2 +1,4 @@
 *.tmproj
 .DS_Store
+
+interactive_projection/.~lock.chart_definitions.csv#
