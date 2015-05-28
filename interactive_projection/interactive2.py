@@ -7,7 +7,7 @@ import datetime
 import pytz
 import json
 #FRED Config
-urls = {'GEOFRED':"http://geofred-jason.stlouisfed.org/api/data"}
+urls = {'GEOFRED':"http://geofred.stlouisfed.org/api/data"}
 urls['GEO_REGION_TYPES'] =  urls['GEOFRED'] + "/regionTypes"
 urls['GEO_MAPS'] =  "http://geofred-jason.stlouisfed.org/api/maps"
 urls['GEO_DATA_TYPES'] =  urls['GEOFRED'] + "/groupAttributes"
@@ -15,9 +15,14 @@ urls['GEO_DATES'] =  urls['GEOFRED'] + "/groupDates"
 urls['GEO_AGG'] =  urls['GEOFRED'] + "/aggregations"
 urls['GEO_DATA'] =  urls['GEOFRED'] + "/group"
 api_key = "fc359838e2193d76d75f8a850c41fbd7"
+
+#change this DB location
 db = "/Volumes/Pylos/Projects/FED/projection.db"
+#
+
 defFile = "chart_definitions.csv"
 serFile = "iproj_series.csv"
+
 conn = sq.connect(db) #connection is open
 conn.row_factory = sq.Row
 c = conn.cursor()
@@ -34,16 +39,18 @@ def updateSeries():
 			c.execute("DELETE from series")
 		for row in reader:
 			hash = row["series_hash"];
-			print("ROW ")
+			print("series def ROW::")
 			print(row)
 			c.execute("select count(1) from series where series_hash = ? ", [row["series_hash"]])
 			exists = c.fetchone()[0] == 1;
-			print(exists)
+			print("row exists? "+str(exists))
 			if not (exists) :
-				print("insert")
-				c.execute("INSERT INTO series(attributes, series_hash, series_name, region_type) VALUES (:attributes,:series_hash,:title,:region_type) ", row)
+				print("inserting row")
+				c.execute("INSERT INTO series (attributes, series_hash, series_name, region_type) VALUES (:attributes,:series_hash,:title,:region_type) ", row)
 			
 			dates = rq.get(urls["GEO_DATES"]+"/"+row["region_type"]+"/"+row["series_hash"]+"/"+row["attributes"]).json();
+			print("DATES for series::")
+			print(dates)
 			#make a list of dates for all observations
 			datelist = [elem["key"] for elem in dates]	
 			print(datelist)

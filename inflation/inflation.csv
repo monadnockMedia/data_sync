@@ -1,21 +1,21 @@
-"program_name","bls_name","ser_id","value"
-"Eating Out","Food away from home","CUSR0000SEFV",
-"Movies","Admission to movies, theaters, and concerts","CUSR0000SS62031",
-"Clothing","Apparel less footwear","CUSR0000SA311",
-"Toys","Toys","CUSR0000SERE01",
-"Gym Membership","Club dues and fees for participant sports and group exercises","CUSR0000SERF01",
-"Pet Food","Pet food","CUSR0000SS61031",
-"Groceries","Food at home","CUSR0000SAF11",
-"Mortgage Payment","Housing","CPIHOSSL",
-"Medical Care","Medical care services","CUSR0000SAM2",
-"Car Maintenance","Motor vehicle maintenance and repair","CUSR0000SETD",
-"Cable/Satellite","Cable and satellite television and radio service","CUSR0000SERA02",
-"Education","Education","CUSR0000SAE1",
-"Text Books and School Supplies","Educational books and supplies","CUSR0000SEEA",
-"Airline Fares","Airline fare","CUSR0000SETG01",
-"Gas","Gasoline (all types)","CUSR0000SETB01",
-"Public Transportation","Public transportation","CUSR0000SETG",
-"Coffee","Coffee","CUSR0000SEFP01",
-"Audio and Video Products","Video and audio products","CUSR0000SERAC",
-"Rent","Rent of primary residence","CUSR0000SEHA",
-"Fees for lessons/instructions","Fees for lessons or instructions","CUSR0000SERF03",
+program_name	bls_name	ser_id	value
+Eating Out	Food away from home	CUSR0000SEFV	
+Movies	Admission to movies, theaters, and concerts	CUSR0000SS62031	
+Clothing	Apparel less footwear	CUSR0000SA311	
+Toys	Toys	CUSR0000SERE01	
+Gym Membership	Club dues and fees for participant sports and group exercises	CUSR0000SERF01	
+Pet Food	Pet food	CUSR0000SS61031	
+Groceries	Food at home	CUSR0000SAF11	
+Mortgage Payment	Housing	CPIHOSSL	
+Medical Care	Medical care services	CUSR0000SAM2	
+Car Maintenance	Motor vehicle maintenance and repair	CUSR0000SETD	
+Cable/Satellite	Cable and satellite television and radio service	CUSR0000SERA02	
+Education	Education	CUSR0000SAE1	
+Text Books and School Supplies	Educational books and supplies	CUSR0000SEEA	
+Airline Fares	Airline fare	CUSR0000SETG01	
+Gas	Gasoline (all types)	CUSR0000SETB01	
+Public Transportation	Public transportation	CUSR0000SETG	
+Coffee	Coffee	CUSR0000SEFP01	
+Audio and Video Products	Video and audio products	CUSR0000SERAC	
+Rent	Rent of primary residence	CUSR0000SEHA	
+Fees for Lessons/Instructions	Fees for lessons or instructions	CUSR0000SERF03	
