@@ -18,7 +18,7 @@ natID = "CPIAUCSL";
 
 
 def openCSV():
-	with open('inflation.csv', 'rb') as csvfile:
+	with open('inflation.csv') as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
 			ids.append(row["ser_id"])
@@ -35,8 +35,14 @@ def openCSV():
 		print nat[len(nat)-1]
 		rate = nat[len(nat)-1]["value"]
 		jsRead = json.dumps(read)
+		
+		dataDict = {"data":read, "national_rate": rate}
+		jData = json.dumps(dataDict)
+		
 		jsFile = "var data_json = JSON.parse('"+jsRead+"');"
 		jsFile += "var national_rate ="+rate+";"
+		with open("data.json","w") as outfile:
+			outfile.write(jData)
 		with open("data.js","w") as outfile:
 			outfile.write(jsFile)
 		
