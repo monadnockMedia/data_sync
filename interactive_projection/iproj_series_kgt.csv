@@ -1,0 +1,11 @@
+title,series_id,series_hash,attributes,addtl_attr,region_type,series_type_id
+Unemployment Rate,,f36ab932a8542c1386dcdf777f52c918,"Not Seasonally Adjusted, Monthly, Percent",,county,1224
+Constant GDP per capita,,3e7a27dd8dcd57eb795f906dfb113ab7,"Not Seasonally Adjusted, Annual, 2005 U.S. Dollars",,country,1460
+Population ages 65 and above,,25aef58a050c2e3b598fe54de114f66a,"Not Seasonally Adjusted, Annual, Percent of Total",,country,1610
+Net migration,,fa7b69c486406d9bd6e0ad18b02295fc,"Not Seasonally Adjusted, 5-Years, People",?aggregationFrequency=5-Years,country,1606
+Internet users,,f657be8208d1cb4f06baa770bd91a3ab,"Not Seasonally Adjusted, Annual, Per 100 People",,country,469
+Ease of doing business index,,f086dc7b3230fee5c50570c409e02d22,"Not Seasonally Adjusted, Annual, 1=Most Business-friendly Regulations",,country,1155
+Barro-Lee: Population age 25+ with tertiary schooling. Total (Incomplete and Completed Tertiary),,da92db5dc110d91293c25dbe18ee4695,"Not Seasonally Adjusted, 5-Years, Percent",,country,1140
+Consumer Price Index for All Urban Consumers: All Items,,9f24b6a0e4639d81a69184b3f89a8dca,"Not Seasonally Adjusted, Quarterly, Growth Rate Previous Period",,country,2077
+Bachelor's Degree or Higher (5-year estimate),,2666c4cfe1df1b61d59c2e0ad8cf3d86,"Not Seasonally Adjusted, 5-Years, Percent",?aggregationFrequency=5-Years,county,757
+Per Capita Personal Income,,1a4f114610fc5c99248884de2b253102,"Not Seasonally Adjusted, Annual, Dollars",,county,882

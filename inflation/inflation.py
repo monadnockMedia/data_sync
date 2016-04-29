@@ -6,6 +6,12 @@ from dateutil import parser
 import datetime
 import pytz
 import json
+from os.path import expanduser
+import shutil
+from os.path import isfile
+
+import time
+
 #FRED Config
 urls = {'FRED':"http://api.stlouisfed.org/fred"}
 urls['FRED_SER'] =  urls['FRED'] + "/series"
@@ -15,6 +21,16 @@ args = {"api_key":api_key, "series_id":0, "units":"pc1","file_type":"json", "fre
 ids = []
 read = []
 natID = "CPIAUCSL";
+
+
+home = expanduser("~")
+#change this DB location
+#db = "/Volumes/Pylos/Projects/FED/projection.db"
+#
+bu = home+"/exhibit/data"+str(time.time())+".json"
+datafile = home+"/exhibit/data.json"
+
+
 
 
 def openCSV():
@@ -41,7 +57,13 @@ def openCSV():
 		
 		jsFile = "var data_json = JSON.parse('"+jsRead+"');"
 		jsFile += "var national_rate ="+rate+";"
-		with open("data.json","w") as outfile:
+		
+		if isfile(datafile):
+			print "Backing up data to "+bu
+			shutil.move(datafile,bu)
+			
+		print "Writing data file to "+datafile
+		with open(datafile,"w") as outfile:
 			outfile.write(jData)
 		with open("data.js","w") as outfile:
 			outfile.write(jsFile)

@@ -5,6 +5,10 @@ from dateutil import parser
 import datetime
 import pytz
 import json
+from os.path import expanduser
+import shutil
+from os.path import isfile
+import time
 #FRED Config
 urls = {'FRED':"http://api.stlouisfed.org/fred"}
 urls['FRED_SER'] =  urls['FRED'] + "/series"
@@ -13,11 +17,23 @@ api_key = "fc359838e2193d76d75f8a850c41fbd7"
 args = {"api_key":api_key, "series_id":0, "file_type":"json", "frequency":"sa", "aggregation_method" : "avg"}  #initial arguments for FRED requests
 
 
+home = expanduser("~")
+#change this DB location
+#db = "/Volumes/Pylos/Projects/FED/projection.db"
+#
+bu = home+"/exhibit/unemployment"+str(time.time())+".db"
+db = home+"/exhibit/unemployment.db"
+
+if isfile(db):
+	print "making backup at "+bu
+	shutil.copyfile(db,bu)
+
+
 #DB config
-db = 'unemployment.db'
+#db = 'unemployment.db'
 conn = sq.connect(db) #connection is open
 conn.row_factory = sq.Row
-force = False;
+force = True;
 #setup vars
 today = datetime.datetime.now()
 today = pytz.utc.localize(today);
@@ -41,6 +57,7 @@ def get_ids():
 def check_series():
 	if force == True:
 		delete_rows()
+		print "Forced, deleting rows"
 	ids = get_ids() #get all ids from db
 	#print ids
 	c = conn.cursor()

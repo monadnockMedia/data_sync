@@ -39,7 +39,7 @@ c = conn.cursor()
 hashes = []
 defs = []
 cleanSeries = True;
-cleanObs = False;
+cleanObs = True;
 updateGeo = True;
 
 def updateSeries():
@@ -50,6 +50,8 @@ def updateSeries():
 			c.execute("DELETE from series")
 		for row in reader:
 			hash = row["series_hash"];
+			type_id = row["series_type_id"]
+			addtl_attr = row["addtl_attr"]
 			print("series def ROW::")
 			c.execute("select count(1) from series where series_hash = ? ", [row["series_hash"]])
 			exists = c.fetchone()[0] == 1;
@@ -57,12 +59,14 @@ def updateSeries():
 			if not (exists) :
 				print("inserting row "+str(row) )
 				c.execute("INSERT INTO series (attributes, series_hash, series_name, region_type) VALUES (:attributes,:series_hash,:title,:region_type) ", row)
-			
-			dates = rq.get(urls["GEO_DATES"]+"/"+row["region_type"]+"/"+row["series_hash"]+"/"+row["attributes"]).json();
+			req_url = urls["GEO_DATES"]+"/"+row["region_type"]+"/"+type_id+"/"+row["attributes"]+addtl_attr
+			dates = rq.get(req_url).json();
 			#make a list of dates for all observations
-			print("Date query",urls["GEO_DATES"]+"/"+row["region_type"]+"/"+row["series_hash"]+"/"+row["attributes"]);
+			print("Date query",req_url);
 			datelist = [elem["key"] for elem in dates]	
 			c.execute("UPDATE series SET dates=? WHERE series_hash =?",(json.dumps(datelist), row["series_hash"]));
+			c.execute("UPDATE series SET type_id=? WHERE series_hash =?",(type_id, row["series_hash"]));
+			
 			conn.commit()
 			
 def getGeo():
@@ -82,6 +86,7 @@ def getObs():
 	for row in c.fetchall():
 		print(">>>Updating series "+str(row['series_name']))
 		h = row["series_hash"];
+		t_id = str(row["type_id"]);
 		att = row["attributes"];
 		region_type = row["region_type"]
 		datelist =json.loads(row["dates"])
@@ -93,7 +98,9 @@ def getObs():
 			
 			if not (exists):
 				print("datum not found, inserting for "+str(date) )
-				obs = rq.get(urls["GEO_DATA"]+"/"+region_type+"/"+h+"/"+att+"/"+date).json()
+				req_url = urls["GEO_DATA"]+"/"+region_type+"/"+t_id+"/"+att+"/"+date
+				print(req_url)
+				obs = rq.get(req_url).json()
 				#vals = obs['values']
 				
 				c.execute("INSERT INTO observations VALUES(?,?,?)", (h,date,json.dumps(obs)))
